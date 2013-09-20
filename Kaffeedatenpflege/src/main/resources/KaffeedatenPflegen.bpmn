@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://activiti.org/bpmn">
+  <process id="kaffeedaten-pflegen" name="Kaffeedaten pflegen" isExecutable="true">
+    <startEvent id="StartEvent_1" name="Start Event"></startEvent>
+    <endEvent id="EndEvent_1" name="End Event"></endEvent>
+    <userTask id="UserTask_1" name="Kaffeedaten bearbeiten" activiti:candidateGroups="kaffeepflegen" activiti:formKey="kaffeepflegenform">
+      <extensionElements>
+        <activiti:formProperty id="kaffeename" name="Kaffee Name" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="UserTask_1"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_2" sourceRef="UserTask_1" targetRef="EndEvent_1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_kaffeedaten-pflegen">
+    <bpmndi:BPMNPlane bpmnElement="kaffeedaten-pflegen" id="BPMNPlane_kaffeedaten-pflegen">
+      <bpmndi:BPMNShape bpmnElement="StartEvent_1" id="BPMNShape_StartEvent_1">
+        <omgdc:Bounds height="36.0" width="36.0" x="110.0" y="127.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="EndEvent_1" id="BPMNShape_EndEvent_1">
+        <omgdc:Bounds height="36.0" width="36.0" x="312.0" y="109.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="UserTask_1" id="BPMNShape_UserTask_1">
+        <omgdc:Bounds height="80.0" width="100.0" x="180.0" y="87.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1" id="BPMNEdge_SequenceFlow_1">
+        <omgdi:waypoint x="146.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="127.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="BPMNEdge_SequenceFlow_2">
+        <omgdi:waypoint x="280.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="312.0" y="127.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
