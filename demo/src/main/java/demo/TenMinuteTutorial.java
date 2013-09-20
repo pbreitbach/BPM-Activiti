@@ -18,7 +18,7 @@ public class TenMinuteTutorial {
 	    // Create Activiti process engine
 	    ProcessEngine processEngine = ProcessEngineConfiguration
 	      .createStandaloneProcessEngineConfiguration()
-	      .buildProcessEngine();
+	      .setDatabaseSchemaUpdate("true").buildProcessEngine();
 	    
 	    // Get Activiti services
 	    RepositoryService repositoryService = processEngine.getRepositoryService();
