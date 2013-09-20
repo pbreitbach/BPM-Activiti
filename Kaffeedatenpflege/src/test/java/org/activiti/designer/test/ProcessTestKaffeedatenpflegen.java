@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class ProcessTestKaffeedatenpflegen {
 
-	private String filename = "C:\coding-dojo\BPM-Activiti\Kaffeedatenpflege\src\main\resources\KaffeedatenPflegen.bpmn";
+	private String filename = "C:\\coding-dojo\\BPM-Activiti\\Kaffeedatenpflege\\src\\main\\resources\\KaffeedatenPflegen.bpmn";
 
 	@Rule
 	public ActivitiRule activitiRule = new ActivitiRule();

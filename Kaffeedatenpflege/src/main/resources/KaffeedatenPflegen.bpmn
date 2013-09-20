@@ -6,10 +6,16 @@
     <userTask id="UserTask_1" name="Kaffeedaten bearbeiten" activiti:candidateGroups="kaffeepflegen" activiti:formKey="kaffeepflegenform">
       <extensionElements>
         <activiti:formProperty id="kaffeename" name="Kaffee Name" required="true"></activiti:formProperty>
+        <activiti:formProperty id="kaffeepreis" name="Preis" required="true"></activiti:formProperty>
+        <activiti:formProperty id="kaffeekommentar" name="Ristretto Mr. Clooney?"></activiti:formProperty>
       </extensionElements>
     </userTask>
     <sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="UserTask_1"></sequenceFlow>
-    <sequenceFlow id="SequenceFlow_2" sourceRef="UserTask_1" targetRef="EndEvent_1"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_2" sourceRef="UserTask_1" targetRef="scripttask1"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="true">
+      <script>out:println "Kaffee Name: ${kaffeename}"</script>
+    </scriptTask>
+    <sequenceFlow id="flow1" sourceRef="scripttask1" targetRef="EndEvent_1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_kaffeedaten-pflegen">
     <bpmndi:BPMNPlane bpmnElement="kaffeedaten-pflegen" id="BPMNPlane_kaffeedaten-pflegen">
@@ -17,10 +23,13 @@
         <omgdc:Bounds height="36.0" width="36.0" x="110.0" y="127.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="EndEvent_1" id="BPMNShape_EndEvent_1">
-        <omgdc:Bounds height="36.0" width="36.0" x="312.0" y="109.0"></omgdc:Bounds>
+        <omgdc:Bounds height="36.0" width="36.0" x="560.0" y="87.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="UserTask_1" id="BPMNShape_UserTask_1">
         <omgdc:Bounds height="80.0" width="100.0" x="180.0" y="87.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="367.0" y="123.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1" id="BPMNEdge_SequenceFlow_1">
         <omgdi:waypoint x="146.0" y="145.0"></omgdi:waypoint>
@@ -28,7 +37,12 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="BPMNEdge_SequenceFlow_2">
         <omgdi:waypoint x="280.0" y="127.0"></omgdi:waypoint>
-        <omgdi:waypoint x="312.0" y="127.0"></omgdi:waypoint>
+        <omgdi:waypoint x="367.0" y="150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="472.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="578.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="578.0" y="123.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
