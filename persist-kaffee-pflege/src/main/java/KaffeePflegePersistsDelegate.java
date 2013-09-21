@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,12 +29,15 @@ public class KaffeePflegePersistsDelegate implements JavaDelegate, Serializable 
 		Kaffee kaffee = new Kaffee();
 		kaffee.setId(1);
 		kaffee.setName(name);
-		kaffee.setPreis(Float.parseFloat(preis));
+		kaffee.setPreis(new BigDecimal(preis));
 		kaffee.setKommentar(kommentar);
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("persist-kaffee-pflege");
 		EntityManager kaffeeem = emf.createEntityManager();
-		kaffeeem.persist(kaffee);
+		kaffeeem.getTransaction().begin();
+		kaffeeem.merge(kaffee);
+		kaffeeem.flush();
+		kaffeeem.getTransaction().commit();
 	}
 
 }

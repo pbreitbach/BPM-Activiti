@@ -1,69 +1,69 @@
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+@Entity
+public class Kaffee {
 
-@Entity(name="kaffee")
-public class Kaffee implements Serializable{
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private long id;
+@Column(nullable = false, length = 100)
+private String name;
+@Column(nullable = false)
+private BigDecimal preis;
+@Column(length = 500)
+private String kommentar;
 
-	@Id
-	@GeneratedValue
-	@Column(name="kaffeeId", nullable=false)
-	private long kaffeeId;
-	private float preis;
-	private String name;
-	private String kommentar;
-	
-	private Set<Bestellung> bestellungen = new HashSet<Bestellung>();
-	public long getId() {
-		return kaffeeId;
-	}
-	public void setId(long id) {
-		this.kaffeeId = id;
-	}
-	public float getPreis() {
-		return preis;
-	}
-	public void setPreis(float preis) {
-		this.preis = preis;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getKommentar() {
-		return kommentar;
-	}
-	public void setKommentar(String kommentar) {
-		this.kommentar = kommentar;
-	}
-	
-	@ManyToMany
-	@JoinTable(name="kaffee-pro-bestellung", 
-		joinColumns= {@JoinColumn(name="kaffeeId")},
-		inverseJoinColumns={@JoinColumn(name="bestellungId") })
-	public Set<Bestellung> getBestellungen() {
-		return bestellungen;
-	}
-	public void setBestellungen(Set<Bestellung> bestellungen) {
-		this.bestellungen = bestellungen;
-	}
-	
-	
-	
+@ManyToMany(mappedBy = "kaffees")
+private List<Bestellung> bestellungen = new ArrayList<Bestellung>();
+
+public long getId() {
+return id;
 }
 
-//kaffee-pro-bestellung
-//id-k
-//id-b
-//menge
+public void setId(long id) {
+this.id = id;
+}
+
+public BigDecimal getPreis() {
+return preis;
+}
+
+public void setPreis(BigDecimal preis) {
+this.preis = preis;
+}
+
+public String getName() {
+return name;
+}
+
+public void setName(String name) {
+this.name = name;
+}
+
+public String getKommentar() {
+return kommentar;
+}
+
+public void setKommentar(String kommentar) {
+this.kommentar = kommentar;
+}
+
+public List<Bestellung> getBestellungen() {
+return Collections.unmodifiableList(bestellungen);
+}
+
+public void addBestellung(Bestellung bestellung) {
+this.bestellungen.add(bestellung);
+}
+
+}

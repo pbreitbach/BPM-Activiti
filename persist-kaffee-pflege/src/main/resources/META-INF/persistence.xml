@@ -9,7 +9,7 @@
 		<class>Bestellung</class>
 		
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect#sthash.uF0JqnOr.dpuf" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.transaction.manager_lookup_class"
