@@ -11,11 +11,12 @@
       </extensionElements>
     </userTask>
     <sequenceFlow id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="UserTask_1"></sequenceFlow>
-    <sequenceFlow id="SequenceFlow_2" sourceRef="UserTask_1" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="SequenceFlow_2" sourceRef="UserTask_1" targetRef="servicetask2"></sequenceFlow>
     <scriptTask id="scripttask1" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="true">
       <script>out:println "Kaffee Name: ${kaffeename}"</script>
     </scriptTask>
-    <sequenceFlow id="flow1" sourceRef="scripttask1" targetRef="EndEvent_1"></sequenceFlow>
+    <sequenceFlow id="flow1" sourceRef="servicetask2" targetRef="EndEvent_1"></sequenceFlow>
+    <serviceTask id="servicetask2" name="Service Task" activiti:class="KaffeePflegePersistsDelegate"></serviceTask>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_kaffeedaten-pflegen">
     <bpmndi:BPMNPlane bpmnElement="kaffeedaten-pflegen" id="BPMNPlane_kaffeedaten-pflegen">
@@ -31,16 +32,19 @@
       <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
         <omgdc:Bounds height="55.0" width="105.0" x="367.0" y="123.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="380.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1" id="BPMNEdge_SequenceFlow_1">
         <omgdi:waypoint x="146.0" y="145.0"></omgdi:waypoint>
         <omgdi:waypoint x="180.0" y="127.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_2" id="BPMNEdge_SequenceFlow_2">
-        <omgdi:waypoint x="280.0" y="127.0"></omgdi:waypoint>
-        <omgdi:waypoint x="367.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="230.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="240.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-        <omgdi:waypoint x="472.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="240.0"></omgdi:waypoint>
         <omgdi:waypoint x="578.0" y="150.0"></omgdi:waypoint>
         <omgdi:waypoint x="578.0" y="123.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
